@@ -1,0 +1,11 @@
+
+# Intellij
+.idea
+
+5.2
+ds*/**
+ib*/**
+latest/**
+temp*/**
+UnboundID-*/**
+
