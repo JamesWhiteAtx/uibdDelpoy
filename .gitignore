@@ -3,8 +3,8 @@
 .idea
 
 5.2
-ds*/**
-ib*/**
+ds?/**
+ib?/**
 latest/**
 temp*/**
 UnboundID-*/**
