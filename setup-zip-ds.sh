@@ -14,10 +14,10 @@ ports $ITERATION LDAP LDAPS HTTPS
 # stop and remove 
 clean $ITERATION CLEANED
 
-echo $"*** Removing temp directory - $TEMP"
+echo $"*** Removing temp directory - $TEMPDIR"
 rm -Rf $TEMPDIR
 
-echo $"*** Unzipping and renaming package to $DSDIR"
+echo $"*** Unzipping and renaming package to $PACKAGES/$DSBASE/UnboundID-DS-*.zip"
 unzip -qq $PACKAGES/$DSBASE/UnboundID-DS-*.zip -d $TEMPDIR
 mv $TEMPDIR/UnboundID-DS $DSDIR
 

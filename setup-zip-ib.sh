@@ -85,16 +85,17 @@ $IBDIR/bin/dsconfig set-http-servlet-cross-origin-policy-prop --policy-name Rest
 -p $LDAP \
 -D "$BINDDN" -w $PASSWORD --useNoSecurity --trustAll -n
 
-$IBDIR/dsconfig -n create-http-servlet-cross-origin-policy --policy-name auth-ui \
+$IBDIR/bin/dsconfig -n create-http-servlet-cross-origin-policy --policy-name auth-ui \
 --set cors-allowed-methods:GET --set cors-allowed-methods:PUT --set cors-allowed-methods:DELETE \
 --set cors-allowed-origins:"https://localhost:"$HTTPS \
 --set cors-allowed-origins:"https://"$THISHOST":"$HTTPS \
 --set cors-allowed-origins:"http://localhost:3000" \
 --set cors-allowed-origins:"http://"$THISHOST":3000" \
---set cors-allow-credentials:true
+--set cors-allow-credentials:true \
+-n
 
-$IBDIR/dsconfig set-http-servlet-extension-prop --extension-name "OAuth2 Servlet" --set cross-origin-policy:auth-ui -n 
-$IBDIR/dsconfig set-http-servlet-extension-prop --extension-name "Session Servlet" --set cross-origin-policy:auth-ui -n 
+$IBDIR/bin/dsconfig set-http-servlet-extension-prop --extension-name "OAuth2 Servlet" --set cross-origin-policy:auth-ui -n 
+$IBDIR/bin/dsconfig set-http-servlet-extension-prop --extension-name "Authentication Servlet" --set cross-origin-policy:auth-ui -n 
 
 $IBDIR/bin/dsconfig set-http-servlet-extension-prop --extension-name "Configuration" \
 --set cross-origin-policy:Restrictive \
