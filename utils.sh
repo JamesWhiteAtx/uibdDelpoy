@@ -3,12 +3,15 @@
 DEPLOY=$(pwd)
 DSBASE=ds
 IBBASE=ib
+SYBASE=sy
 DSNAME=Directory
 IBNAME=Broker
 
 PASSWORD=password
 BINDDN="cn=Directory Manager"
-THISHOST=$(hostname)
+THISHOST="localhost"
+# $(hostname)
+#"mybox"
 LOCATION="Austin"
 
 PARENTDIR="$(dirname "$DEPLOY")"
@@ -32,6 +35,15 @@ function ibDir() {
     local _outvar=$2
 
 	local _result=$DEPLOY/$IBBASE$_iteration
+
+    eval $_outvar=\$_result
+}
+
+function syDir() {
+    local _iteration=$1
+    local _outvar=$2
+
+	local _result=$DEPLOY/$SYBASE$_iteration
 
     eval $_outvar=\$_result
 }
@@ -65,6 +77,10 @@ function prodDir() {
         _result2=$IBNAME$_iteration
     fi
     if [ ! -d "$_result1" ]; then
+        _result1=$DEPLOY/$SYBASE$_iteration
+        _result2=$SYNAME$_iteration
+    fi
+    if [ ! -d "$_result1" ]; then
         _result1=''
         _result2=''
     fi
@@ -84,6 +100,9 @@ function prodStopper() {
 
 	if [ ! -f "$_result" ]; then
         _result=$_dir/bin/stop-broker
+    fi
+	if [ ! -f "$_result" ]; then
+        _result=$_dir/bin/stop-sync-server
     fi
 	if [ ! -f "$_result" ]; then
         _result=''

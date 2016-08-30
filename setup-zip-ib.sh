@@ -33,7 +33,7 @@ rm -Rf $TEMPDIR
 
 echo $"*** unzipping and renaming package to $IBDIR"
 unzip -qq $PACKAGES/$IBBASE/UnboundID-Broker-*.zip -d $TEMPDIR
-mv $TEMPDIR/UnboundID-BROKER $IBDIR
+mv $TEMPDIR/UnboundID-Broker $IBDIR
 
 echo $"*** setting up $IBDIR\setup"
 $IBDIR/setup --no-prompt --acceptLicense --location Austin \
